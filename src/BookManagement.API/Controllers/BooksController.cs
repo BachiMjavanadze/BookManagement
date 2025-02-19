@@ -7,6 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace BookManagement.API.Controllers;
 
+[Produces("application/json")]
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]

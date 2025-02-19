@@ -7,6 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace BookManagement.API.Controllers;
 
+[Produces("application/json")]
 [ApiController]
 [Route("api/[controller]")]
 public class AuthController : ControllerBase

@@ -1,15 +1,12 @@
-﻿using BookManagement.API.Models;
-using BookManagement.Core.Interfaces;
+﻿using System.Text;
+using BookManagement.API.Models;
 using BookManagement.Core.Settings;
-using BookManagement.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System.Text;
 
-namespace BookManagement.API.Middleware;
+namespace BookManagement.API.Extensions;
 
-public static class JwtMiddleware
+public static class JwtExtensions
 {
     public static IServiceCollection AddJwtServices(this IServiceCollection services, IConfiguration configuration)
     {
