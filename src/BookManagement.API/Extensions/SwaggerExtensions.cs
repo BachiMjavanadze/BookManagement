@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 
 namespace BookManagement.API.Extensions;
 
@@ -9,6 +10,12 @@ public static class SwaggerExtensions
         services.AddSwaggerGen(c =>
         {
             c.EnableAnnotations();
+
+            c.MapType<string>(() => new OpenApiSchema
+            {
+                Type = "string",
+                Example = new OpenApiString("string")
+            });
 
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
