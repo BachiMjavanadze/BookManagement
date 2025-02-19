@@ -141,4 +141,3 @@ Common status codes:
 * 409 - Conflict (e.g., duplicate book title)
 * 500 - Internal Server Error
 
-## Development
