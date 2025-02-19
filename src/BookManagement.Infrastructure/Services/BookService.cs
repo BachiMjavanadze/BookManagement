@@ -89,18 +89,31 @@ public class BookService : IBookService
     /// <exception cref="DuplicateTitleException">Thrown if one or more books have titles that already exist.</exception>
     public async Task AddRangeAsync(IEnumerable<BookCreateDto> dtos)
     {
-        var books = new List<Book>();
+        var dtosList = dtos.ToList();
 
-        foreach (var dto in dtos)
+        var duplicateTitles = dtosList
+            .GroupBy(dto => dto.Title)
+            .Where(g => g.Count() > 1)
+            .Select(g => g.Key)
+            .ToList();
+
+        if (duplicateTitles.Count > 0)
         {
-            if (await _bookRepository.TitleExistsAsync(dto.Title))
-                throw new DuplicateTitleException(dto.Title);
-
-            books.Add(dto.ToBook());
+            throw new DuplicateTitleException(duplicateTitles.First());
         }
 
+        foreach (var dto in dtosList)
+        {
+            if (await _bookRepository.TitleExistsAsync(dto.Title))
+            {
+                throw new DuplicateTitleException(dto.Title);
+            }
+        }
+
+        var books = dtosList.Select(dto => dto.ToBook()).ToList();
         await _bookRepository.AddRangeAsync(books);
     }
+
 
     /// <summary>
     /// Updates an existing book with new information.
