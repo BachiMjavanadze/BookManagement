@@ -1,3 +1,7 @@
+// convert to CQRS & MediatR
+// https://chatgpt.com/c/67f8f451-e8f0-8010-b9dc-20d6d7cea9ba
+// https://claude.ai/chat/72c2af3b-80f8-43e2-8bd6-6fd5e18b5200
+
 using BookManagement.API.Extensions;
 using BookManagement.API.Middleware;
 using BookManagement.Core.Interfaces;
